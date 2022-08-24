@@ -3,7 +3,7 @@ const displayField = function () {
   <section id="current-image">
     <div class="menu-field">
       <input type="date" class="date-picker">
-      <button>Gallery</button>  
+      <button id="gallery-btn">Gallery</button>  
     </div>
     <div class="img-container">
       <div class="img"></div>
@@ -36,3 +36,6 @@ function useData(data) {
     '.img'
   ).innerHTML += `<img class="nasa-img" src="${data.url}">`;
 }
+
+const galleryButton = document.querySelector('#gallery-btn');
+galleryButton.addEventListener('click');
