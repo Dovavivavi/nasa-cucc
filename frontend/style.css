@@ -1,1 +1,14 @@
-/*# sourceMappingURL=style.css.map */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#current-image {
+  height: 100vh;
+  background-color: aquamarine;
+}
+
+.nasa-img {
+  width: 500px;
+  height: 500px;
+}/*# sourceMappingURL=style.css.map */
