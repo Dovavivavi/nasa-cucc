@@ -1,6 +1,10 @@
 const displayField = function () {
   return /*html*/ `
   <section id="current-image">
+    <div class="menu-field">
+      <input type="date" class="date-picker">
+      <button>Gallery</button>  
+    </div>
     <div class="img-container">
       <div class="img"></div>
     </div>

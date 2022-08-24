@@ -6,9 +6,23 @@ body {
 #current-image {
   height: 100vh;
   background-color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nasa-img {
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 500px;
+  size: contain;
+}
+
+.text-container {
+  max-width: 500px;
+  max-height: 200px;
+}
+
+.text {
+  font-size: 12;
 }
