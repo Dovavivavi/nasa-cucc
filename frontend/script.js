@@ -18,6 +18,7 @@ const displayField = function () {
 
 const root = document.querySelector('#root');
 root.insertAdjacentHTML('beforeend', displayField());
+
 fetchApod();
 
 async function fetchApod() {
@@ -27,6 +28,7 @@ async function fetchApod() {
   );
   let data = await response.json();
   console.log(data);
+
   useData(data);
 }
 
@@ -40,6 +42,7 @@ async function fetchApodAgain() {
   );
   let data = await response.json();
   console.log(data);
+
   useData(data);
 }
 
@@ -49,12 +52,15 @@ function useData(data) {
     '.img'
   ).innerHTML += `<img class="nasa-img" src="${data.url}">`;
 }
+
 const inputField = document.querySelector('.date-picker');
 
 function dateSearch() {
   const page = document.querySelector('#current-image');
+
   let currentDate = inputField.value;
   fetchDate = currentDate;
+
   page.remove();
   root.insertAdjacentHTML('beforeend', displayField());
   fetchApodAgain();
