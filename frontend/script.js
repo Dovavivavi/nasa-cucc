@@ -2,10 +2,9 @@ const displayField = function () {
   return /*html*/ `
   <section id="current-image">
     <div class="menu-field">
-      <button class="hat">hatra</button>
-      <input type="date" class="date-picker">
-      <button class="gallery-btn">Gallery</button>  
-      <button class="">elore</button>
+    <input type="text" class="date-picker">
+    <button class="" onclick="dateSearch()">Search</button>
+    <button class="gallery-btn">Gallery</button>  
     </div>
     <div class="img-container">
       <div class="img"></div>
@@ -19,13 +18,25 @@ const displayField = function () {
 
 const root = document.querySelector('#root');
 root.insertAdjacentHTML('beforeend', displayField());
-root.insertAdjacentHTML('beforeend', fetchApod());
+fetchApod();
 
 async function fetchApod() {
   let key = '4hrbRcDLDQtmrglPbHKC4ZYeZdrPL2jTbuBBDuC1';
   let response = await fetch(
     `https://api.nasa.gov/planetary/apod?api_key=${key}`
-    // https://api.nasa.gov/planetary/apod?date=2022-08-12&api_key=${key}
+  );
+  let data = await response.json();
+  console.log(data);
+  useData(data);
+}
+
+let fetchDate = null;
+
+async function fetchApodAgain() {
+  let key = '4hrbRcDLDQtmrglPbHKC4ZYeZdrPL2jTbuBBDuC1';
+  let date = fetchDate;
+  let response = await fetch(
+    `https://api.nasa.gov/planetary/apod?date=${date}&api_key=${key}`
   );
   let data = await response.json();
   console.log(data);
@@ -38,24 +49,13 @@ function useData(data) {
     '.img'
   ).innerHTML += `<img class="nasa-img" src="${data.url}">`;
 }
+const inputField = document.querySelector('.date-picker');
 
-const galleryButton = document.querySelector('.gallery-btn');
-galleryButton.addEventListener('click');
-
-// let date = null;
-// const dateField = document.querySelector('.date-picker');
-// function dateChange() {
-//   dateValue = dateField.value;
-//   date = dateValue;
-// }
-
-// dateField.addEventListener('input', dateChange());
-// console.log(dateChange());
-// console.log(date);
-
-const datePicker = document.querySelector('.date-picker');
-
-datePicker.addEventListener('change', (event) => {
-  const result = event.String();
-  console.log(result);
-});
+function dateSearch() {
+  const page = document.querySelector('#current-image');
+  let currentDate = inputField.value;
+  fetchDate = currentDate;
+  page.remove();
+  root.insertAdjacentHTML('beforeend', displayField());
+  fetchApodAgain();
+}
